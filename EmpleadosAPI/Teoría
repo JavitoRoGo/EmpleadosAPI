@@ -1,0 +1,9 @@
+TEORÍA SOBRE TRABAJO EN RED CON API-REST
+
+Una API en la nube, o una API-RESTFUL es un conjunto de operaciones o funcionalidades que no están en nuestro dispositivo, sino que se accede a través de internet.
+En principio se usaron XML para construir las APIs y tenerlos en remoto, porque se necesita que nuestro dispositivo se entienda con la API independientemente del sistema operativo o del lenguaje de programación que se esté usando.
+Pero ya no se usan los XML sino que la comunicación e intercambio se hace con JSON, que son más fáciles de construir y trabajar con ellos. A partir del uso de los JSON se pasó a API RESTFUL.
+Para poder hacer que esta comunicación sea efectiva se necesita cumplir ciertos estándares.
+El funcionamiento de una web sería que nosotros le hacemos la petición llamando al protocolo http y la web nos devuelve un archivo html, con objetos secundarios como cosas de javascript o formatos con CSS; y el navegador coge este html, lo interpreta y lo muestra.
+El protocolo http funciona con métodos, siendo los habituales get y post. En el método get hacemos una petición al servidor y le pasamos la url como petición, que puede ser sin parámetros o con parámetros (texto de una búsqueda por ejemplo). Estas peticiones son sin estado, la web no tiene memoria entre llamadas, por lo que constantemente tendremos que estarle pasando parámetros con la información deseada.
+También podemos hacer un post con la url, que es la operación en la que se envía una fuente de peitición, que puede ser también un json. O sea, enviamos un contenido y recibimos una respuesta relacionada con ese contenido.

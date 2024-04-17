@@ -25,3 +25,6 @@ struct Empleado: Identifiable, Hashable {
 		"\(lastName), \(firstName)"
 	}
 }
+
+// En toda la app podemos usar [Empleado] para los datos, o usar Empleados con un typealias
+typealias Empleados = [Empleado]

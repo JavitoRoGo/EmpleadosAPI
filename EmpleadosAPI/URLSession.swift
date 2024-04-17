@@ -7,6 +7,8 @@
 
 import Foundation
 
+// Capa de las sesiones o las llamadas, usando una url o una url-request
+
 extension URLSession {
 	func getData(from url: URL) async throws -> (data: Data, response: HTTPURLResponse) {
 		do {

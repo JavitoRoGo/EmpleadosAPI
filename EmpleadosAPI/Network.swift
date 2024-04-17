@@ -7,8 +7,11 @@
 
 import Foundation
 
+// Este interactor es el encargado de la persistencia dentro de la app. Es el que creamos de forma particular para nuestra app y que trabaja con los modelos de datos propios para esta app
+// Lo que hace es usar el interactor de red o Network Interactor (la librería si la tenemos creada) para cargar los datos desde la red a la capa de presentación
+
 protocol DataInteractor {
-	func getEmpleados() async throws -> [Empleado]
+	func getEmpleados() async throws -> Empleados
 	func getEmpleado(id: Int) async throws -> Empleado
 }
 
