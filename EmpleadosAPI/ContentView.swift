@@ -8,14 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+	@ObservedObject var vm = EmpleadosVM()
+	
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+		NavigationStack {
+			Group {
+				if vm.showflower {
+					ProgressView()
+				} else {
+					List {
+						ForEach(vm.empleados) { empleado in
+							Text(empleado.fullName)
+						}
+					}
+				}
+			}
+			.navigationTitle("Empleados")
+			.alert("Network Error", isPresented: $vm.showAlert) {} message: {
+				Text(vm.errorMsg)
+			}
+		}
     }
 }
 
