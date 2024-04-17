@@ -8,29 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
-	@ObservedObject var vm = EmpleadosVM()
+	@EnvironmentObject private var vm: EmpleadosVM
 	
     var body: some View {
 		NavigationStack {
-			Group {
-				if vm.showflower {
-					ProgressView()
-				} else {
-					List {
-						ForEach(vm.empleados) { empleado in
-							Text(empleado.fullName)
+			ScrollView {
+				LazyVStack {
+					ForEach(vm.empleados) { empleado in
+						NavigationLink(value: empleado) {
+							EmpleadoRow(empleado: empleado)
 						}
+						.buttonStyle(.plain)
 					}
 				}
+				.padding()
 			}
-			.navigationTitle("Empleados")
-			.alert("Network Error", isPresented: $vm.showAlert) {} message: {
-				Text(vm.errorMsg)
+			.navigationBarTitleDisplayMode(.inline)
+			.navigationDestination(for: Empleado.self) { empleado in
+				EditEmployeeView(editVM: EditEmpleadosVM(empleado: empleado))
 			}
+			.customNavBar(title: "Employees List")
+			.addToolBarButton()
+			.customAlert(showCustom: $vm.showAlert, title: "Network Error", msg: vm.errorMsg)
 		}
     }
 }
 
 #Preview {
-    ContentView()
+	ContentView.preview
 }

@@ -14,7 +14,6 @@ final class EmpleadosVM: ObservableObject {
 	@Published var empleados: Empleados = [] // inicializamos a vacío porque son datos asíncronos que viene de la red
 	@Published var showAlert = false
 	@Published var errorMsg = ""
-	@Published var showflower = true
 	
 	init(interactor: DataInteractor = Network.shared) {
 		self.interactor = interactor
@@ -30,7 +29,6 @@ final class EmpleadosVM: ObservableObject {
 			let empleados = try await interactor.getEmpleados()
 			await MainActor.run {
 				self.empleados = empleados
-				showflower = false
 			}
 		} catch {
 			await MainActor.run {
