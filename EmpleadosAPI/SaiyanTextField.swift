@@ -8,9 +8,28 @@
 import SwiftUI
 
 struct SaiyanTextField: View {
+	enum Condition {
+		case notEmpty
+		case notValid
+		
+		var msg: String {
+			switch self {
+				case .notEmpty:
+					" cannot be empty."
+				case .notValid:
+					" is not valid."
+			}
+		}
+	}
+	
 	let label: String
 	@Binding var value: String
+	let condition: Condition
 	let validation: (String) -> Bool // le pasamos este closure para poder utilizar otro tipo de validaciones y no solo si es empty
+	
+	var errorMsg: String {
+		"\(label+condition.msg)"
+	}
 	
     var body: some View {
 		VStack(alignment: .leading, spacing: 5) {
@@ -41,7 +60,7 @@ struct SaiyanTextField: View {
 					.fill(.quaternary)
 			}
 			if validation(value) {
-				Text("\(label.capitalized) cannot be empty.")
+				Text(errorMsg)
 					.font(.caption)
 					.foregroundStyle(.red)
 					.bold()
@@ -53,7 +72,7 @@ struct SaiyanTextField: View {
 }
 
 #Preview {
-	SaiyanTextField(label: "First name", value: .constant("Julio")) { _ in
+	SaiyanTextField(label: "First name", value: .constant("Julio"), condition: .notEmpty) { _ in
 		true
 	}
 }

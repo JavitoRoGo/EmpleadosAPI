@@ -14,8 +14,8 @@ struct EditEmployeeView: View {
 		ScrollView {
 			LazyVStack(alignment: .leading) {
 				Section {
-					SaiyanTextField(label: "First Name", value: $editVM.firstName, validation: editVM.fieldIsEmpty)
-					SaiyanTextField(label: "Last Name", value: $editVM.lastName, validation: editVM.fieldIsEmpty)
+					SaiyanTextField(label: "First Name", value: $editVM.firstName, condition: .notEmpty, validation: editVM.fieldIsEmpty)
+					SaiyanTextField(label: "Last Name", value: $editVM.lastName, condition: .notEmpty, validation: editVM.fieldIsEmpty)
 				} header: {
 					Text("Personal data")
 						.textCase(.uppercase)
