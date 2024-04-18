@@ -13,6 +13,7 @@ import Foundation
 protocol DataInteractor {
 	func getEmpleados() async throws -> Empleados
 	func getEmpleado(id: Int) async throws -> Empleado
+	func updateEmpleado(_ empleado: Empleado) async -> Bool
 }
 
 struct Network: DataInteractor, NetworkInteractor {
@@ -27,5 +28,14 @@ struct Network: DataInteractor, NetworkInteractor {
 	
 	func getEmpleado(id: Int) async throws -> Empleado {
 		try await getJSON(request: .get(url: .getEmpleado(id: id)), type: EmpleadoDTO.self).toEmpleado
+	}
+	
+	func updateEmpleado(_ empleado: Empleado) async -> Bool {
+		do {
+			try await postJSON(request: .post(url: .empleado, post: empleado.toUpdate, method: .put))
+			return true
+		} catch {
+			return false
+		}
 	}
 }

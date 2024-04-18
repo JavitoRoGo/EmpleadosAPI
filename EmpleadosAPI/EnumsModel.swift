@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum DptoName: String, Codable {
+enum DptoName: String, Codable, Identifiable, CaseIterable {
 	case accounting = "Accounting"
 	case businessDevelopment = "Business Development"
 	case engineering = "Engineering"
@@ -20,9 +20,13 @@ enum DptoName: String, Codable {
 	case services = "Services"
 	case support = "Support"
 	case training = "Training"
+	
+	var id: Self { self }
 }
 
-enum Gender: String, Codable {
+enum Gender: String, Codable, Identifiable, CaseIterable {
 	case female = "Female"
 	case male = "Male"
+	
+	var id: Self { self }
 }

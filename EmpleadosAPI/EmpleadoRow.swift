@@ -11,17 +11,20 @@ struct EmpleadoRow: View {
 	let empleado: Empleado
 	
     var body: some View {
-		HStack{
-			VStack(alignment: .leading) {
-				Text(empleado.fullName)
-					.font(.headline)
-				Text(empleado.email)
-					.font(.footnote)
-					.foregroundStyle(.secondary)
-					.padding(.bottom, 5)
-				Text(empleado.username)
-					.font(.caption)
+		VStack(alignment: .leading) {
+			HStack{
+				VStack(alignment: .leading) {
+					Text(empleado.fullName)
+						.font(.headline)
+					Text(empleado.email)
+						.font(.footnote)
+						.foregroundStyle(.secondary)
+						.padding(.bottom, 5)
+					Text(empleado.username)
+						.font(.caption)
+				}
 			}
+			Divider()
 		}
 		.frame(maxWidth: .infinity, alignment: .leading)
 		.background {

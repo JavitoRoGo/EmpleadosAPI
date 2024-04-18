@@ -30,6 +30,9 @@ struct ContentView: View {
 			.customNavBar(title: "Employees List")
 			.addToolBarButton()
 			.customAlert(showCustom: $vm.showAlert, title: "Network Error", msg: vm.errorMsg)
+			.refreshable {
+				await vm.getEmleados()
+			}
 		}
     }
 }

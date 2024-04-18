@@ -39,4 +39,14 @@ final class EmpleadosVM: ObservableObject {
 	}
 	// La forma mejor de solucionarlo es recuperar los datos en una variable en local y ya luego llamar al MainActor para actualizar los datos: líneas 31-34, y también lo del catch porque estamos modificando valores que van a la interfaz
 //	MainActor es una clase que permite elevar la ejecución al hilo principal, que es donde se ejecuta todo el código de las vistas
+	
+	func updateEmpleado(_ empleado: Empleado) {
+		if let index = empleados.firstIndex(where: { $0.id == empleado.id }) {
+			empleados[index] = empleado
+		}
+	}
+	
+	func updateEmpleadoAPI(_ empleado: Empleado) async -> Bool {
+		await interactor.updateEmpleado(empleado)
+	}
 }

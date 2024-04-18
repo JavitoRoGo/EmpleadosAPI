@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4427C2C42BD1960100F96D8C /* SaveToolBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4427C2C32BD1960100F96D8C /* SaveToolBarButton.swift */; };
+		4427C2C72BD1A27A00F96D8C /* AccesibilityHints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4427C2C62BD1A27A00F96D8C /* AccesibilityHints.swift */; };
 		444548D62BCEF143001196A4 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444548D52BCEF143001196A4 /* APIModel.swift */; };
 		444548D82BCEF1AC001196A4 /* EnumsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444548D72BCEF1AC001196A4 /* EnumsModel.swift */; };
 		444548DA2BCEF2BB001196A4 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444548D92BCEF2BB001196A4 /* Model.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4427C2C32BD1960100F96D8C /* SaveToolBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveToolBarButton.swift; sourceTree = "<group>"; };
+		4427C2C62BD1A27A00F96D8C /* AccesibilityHints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccesibilityHints.swift; sourceTree = "<group>"; };
 		444548D52BCEF143001196A4 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		444548D72BCEF1AC001196A4 /* EnumsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumsModel.swift; sourceTree = "<group>"; };
 		444548D92BCEF2BB001196A4 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -80,6 +84,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4427C2C52BD1A25E00F96D8C /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				4427C2C62BD1A27A00F96D8C /* AccesibilityHints.swift */,
+			);
+			name = Strings;
+			sourceTree = "<group>";
+		};
 		444548D42BCEF12D001196A4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +161,7 @@
 				444548E82BCF0F82001196A4 /* Interactor */,
 				444548DD2BCEF797001196A4 /* Interface */,
 				444548D42BCEF12D001196A4 /* Model */,
+				4427C2C52BD1A25E00F96D8C /* Strings */,
 				445D7FC12BCEF018009DDB80 /* Assets.xcassets */,
 				445D7FC32BCEF018009DDB80 /* Preview Content */,
 				447A8B372BCFD141006AB85F /* Teoría */,
@@ -182,6 +195,7 @@
 				44C904BB2BD043660031C33C /* UnavailableNetwork.swift */,
 				44C904C62BD05F0E0031C33C /* NavigationCustom.swift */,
 				44C904C82BD0607E0031C33C /* AddToolBarButton.swift */,
+				4427C2C32BD1960100F96D8C /* SaveToolBarButton.swift */,
 				44C904D02BD076420031C33C /* AlertaCustom.swift */,
 			);
 			name = Modifiers;
@@ -260,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				444548DA2BCEF2BB001196A4 /* Model.swift in Sources */,
+				4427C2C72BD1A27A00F96D8C /* AccesibilityHints.swift in Sources */,
 				44C904C22BD04FE20031C33C /* PreviewViews.swift in Sources */,
 				444548D82BCEF1AC001196A4 /* EnumsModel.swift in Sources */,
 				444548EA2BCF0FA2001196A4 /* Network.swift in Sources */,
@@ -277,6 +292,7 @@
 				44C904BC2BD043660031C33C /* UnavailableNetwork.swift in Sources */,
 				444548E32BCF09E5001196A4 /* NetworkError.swift in Sources */,
 				44C904D12BD076420031C33C /* AlertaCustom.swift in Sources */,
+				4427C2C42BD1960100F96D8C /* SaveToolBarButton.swift in Sources */,
 				444548D62BCEF143001196A4 /* APIModel.swift in Sources */,
 				44C904C42BD0507C0031C33C /* EmpleadoRow.swift in Sources */,
 				44C904CB2BD062320031C33C /* EditEmployeeView.swift in Sources */,

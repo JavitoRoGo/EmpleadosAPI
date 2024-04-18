@@ -20,8 +20,12 @@ struct DataTestPreview: DataInteractor {
 	func getEmpleado(id: Int) async throws -> Empleado {
 		.test
 	}
+	
+	func updateEmpleado(_ empleado: Empleado) async -> Bool {
+		true
+	}
 }
 
 extension Empleado {
-	static let test = Empleado(id: 1, firstName: "Julio César", lastName: "Fernández", email: "jcfmunoz@icloud.com", username: "jcfmunoz", address: "", zipcode: "", avatar: URL(string: "https://pbs.twimg.com/profile_images/1017076264644022272/tetffw3o_400x400.jpg")!, department: .engineering, gender: .male)
+	static let test = Empleado(id: 1, firstName: "Julio César", lastName: "Fernández", email: "jcfmunoz@icloud.com", username: "jcfmunoz", address: "Mi casa", zipcode: "69666", avatar: URL(string: "https://pbs.twimg.com/profile_images/1017076264644022272/tetffw3o_400x400.jpg")!, department: .engineering, gender: .male)
 }
