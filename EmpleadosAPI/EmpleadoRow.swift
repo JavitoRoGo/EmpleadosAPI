@@ -28,6 +28,7 @@ struct EmpleadoRow: View {
 			Rectangle()
 				.fill(.background)
 		}
+		// recordar que si usamos un ScrollView con NavigationLink solo es pulsable la parte que tenga contenido, y por eso añadimos un fondo a todo lo ancho para que podamos pulsar en cualquier parte de la celda
     }
 }
 
