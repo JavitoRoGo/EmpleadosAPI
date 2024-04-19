@@ -23,6 +23,11 @@ import Foundation
 let prod = URL(string: "https://acacademy-employees-api.herokuapp.com/api")!
 let desa = URL(string: "http://localhost:8080/api")!
 
+//#if DEBUG
+//let api = desa // esto cogería la dirección desa solo en debug, y la otra en producción
+//#else
+//let api = prod
+//#endif
 let api = prod
 
 extension URL {

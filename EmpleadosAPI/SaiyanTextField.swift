@@ -84,7 +84,6 @@ struct SaiyanTextField: View {
 				.accessibilityLabel(Text("\(label) error message."))
 				.accessibilityHint(Text("This is an error validation message for the field \(label). Fix the error to continue."))
 		}
-		.padding(.vertical, 5)
 		.onChange(of: value, initial: true) {
 			if let message = validation(value) {
 				error = true

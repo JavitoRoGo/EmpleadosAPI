@@ -85,6 +85,8 @@ struct EditEmployeeView: View {
 					if await vm.updateEmpleadoAPI(empleado) {
 						vm.updateEmpleado(empleado)
 						dismiss() // esto afecta a la interfaz y debería ir en MainActor, pero no hace falta porque está dentro de un Task que ya lo ejecuta en el hilo principal
+					} else {
+						// aquí va algún tipo de error para que el usuario sepa que ha fallado
 					}
 				}
 			}

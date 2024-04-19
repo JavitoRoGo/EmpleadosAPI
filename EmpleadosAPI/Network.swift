@@ -17,9 +17,16 @@ protocol DataInteractor {
 }
 
 struct Network: DataInteractor, NetworkInteractor {
+	// creamos un protocolo propio para que lo reciba URLSession en lugar del .shared, y así pasarle otro protocolo en los tests
+	// y si no lo especificamos, pues que coja el .shared
+	
 	static let shared = Network()
 	
-	private init() { }
+	let session: URLSession
+	
+	init(session: URLSession = .shared) {
+		self.session = session
+	}
 	
 	func getEmpleados() async throws -> [Empleado] {
 		try await getJSON(request: .get(url: .getEmpleados), type: [EmpleadoDTO].self).map(\.toEmpleado)
@@ -32,7 +39,13 @@ struct Network: DataInteractor, NetworkInteractor {
 	
 	func updateEmpleado(_ empleado: Empleado) async -> Bool {
 		do {
-			try await postJSON(request: .post(url: .empleado, post: empleado.toUpdate, method: .put))
+			try await postJSON(
+				request: .post(
+					url: .empleado,
+					post: empleado.toUpdate,
+					method: .put
+				)
+			)
 			return true
 		} catch {
 			return false

@@ -12,6 +12,8 @@ import Foundation
 // O sea, esto es la persistencia de los datos en la red: descarga y subida
 
 protocol NetworkInteractor {
+	var session: URLSession { get }
+	
 	// podríamos no poner aquí las especificaciones y dejar esto en blanco y también funcionaría, siempre y cuando hagamos la implementación en la extensión. Lo que pasa es que entonces esas funciones no serían requeridas
 	func getJSON<JSON>(request: URLRequest, type: JSON.Type) async throws -> JSON where JSON: Codable
 	func postJSON(request: URLRequest) async throws // el json va dentro del request en este caso, en el body
@@ -19,7 +21,7 @@ protocol NetworkInteractor {
 
 extension NetworkInteractor {
 	func getJSON<JSON>(request: URLRequest, type: JSON.Type) async throws -> JSON where JSON: Codable {
-		let (data, response) = try await URLSession.shared.getData(for: request)
+		let (data, response) = try await session.getData(for: request)
 		if response.statusCode == 200 {
 			do {
 				return try JSONDecoder().decode(type, from: data)
@@ -34,7 +36,7 @@ extension NetworkInteractor {
 	func postJSON(request: URLRequest) async throws {
 		// aquí no nos interesa el data, sino que la respuesta sea correcta
 		// no enviamos el json en este caso porque va en la cabecera del request, como httpBody
-		let (_, response) = try await URLSession.shared.getData(for: request)
+		let (_, response) = try await session.getData(for: request)
 		if response.statusCode != 200 {
 			throw NetworkError.status(response.statusCode)
 			// lanza un error si statusCode es diferente de 200, y si sale todo bien pues no hace nada y damos por buena la operación

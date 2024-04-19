@@ -11,6 +11,7 @@ import SwiftUI
 final class EmpleadosVM: ObservableObject {
 	let interactor: DataInteractor
 	
+	// Recordar que el almacén de los datos publicados tienen que estar en un objeto observable lo más cerca posible de la vista: tiene que recibir su señal un StateObject, EnvironmentObject o ObservedObject. Si se recoge en otra clase aunque sea ObservableObject no se reemiten sus publicadores
 	@Published var empleados: Empleados = [] // inicializamos a vacío porque son datos asíncronos que viene de la red
 	@Published var showAlert = false
 	@Published var errorMsg = ""

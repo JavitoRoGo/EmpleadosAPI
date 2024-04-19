@@ -12,7 +12,7 @@ import Foundation
 extension URLSession {
 	func getData(from url: URL) async throws -> (data: Data, response: HTTPURLResponse) {
 		do {
-			let (data, response) = try await URLSession.shared.data(from: url)
+			let (data, response) = try await data(from: url)
 			guard let response = response as? HTTPURLResponse else {
 				throw NetworkError.nonHTTP
 			}
@@ -26,7 +26,7 @@ extension URLSession {
 	
 	func getData(for request: URLRequest) async throws -> (data: Data, response: HTTPURLResponse) {
 		do {
-			let (data, response) = try await URLSession.shared.data(for: request)
+			let (data, response) = try await data(for: request)
 			guard let response = response as? HTTPURLResponse else {
 				throw NetworkError.nonHTTP
 			}
