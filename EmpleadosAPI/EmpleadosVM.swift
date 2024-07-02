@@ -5,7 +5,38 @@
 //  Created by Javier Rodríguez Gómez on 16/4/24.
 //
 
+import Combine
 import SwiftUI
+
+// Veamos un ejemplo de VM de cómo sería si quisiéramos separar la lógica de los datos de la lógica de la vista. O sea, la clase EmpleadosVM que hemos usado en toda la app pasaría a llamarse EmpleadosLogic, y tendría toda la lógica de los datos. Y sacaríamos de ahí las propiedades de showAlert y errorMsg por pertenecer al viewmodel de la vista
+// Y creamos un nuevo viewmodel EmpleadosVM para gestionar la lógica de la vista, y que tiene que contener una instancia del viemodel con la lógica para poder acceder a los datos. Lo que ocurre con esta forma de trabajo es que los Published de EmpleadosLogic no son recibidos por el nuevo EmpleadosVM, ya que no contiene ningún StateObject, ObservedObject o EnvironmentObject dentro de una vista, que sí serían capaces de recibir esa señal del objectWillChange
+// Un ObservableObject no es capaz de relanzar una señal: el Published de empleados sí emite cuando se hace la carga, pero la instancia logic no lo recibe y no puede relanzarlo
+// Por eso habría que hacer un truco o hack usando suscriptores de Combine para poder "escuchar" los publicadores de los Published de EmpleadosLogic. Funcionaría bien, pero sería un ejemplo claro de incumplimiento de la norma de "don't fight the framework"
+
+//final class EmpleadosVM: ObservableObject {
+//	let logic: EmpleadosLogic
+//	
+//	var subscribers = Set<AnyCancellable>() // AnyCancellable es el tipo genérico de cualquier suscriptor de Combine
+//	// hay que almacenarlo aquí porque un suscriptor no va a funcionar si no está almacenado en una propiedad de la clase, porque se perdería
+//	// y así existe mientras exista la instancia de la clase
+//	
+//	@Published var showAlert = false
+//	@Published var errorMsg = ""
+//	
+//	init(logic: EmpleadosLogic = EmpleadosLogic()) {
+//		self.logic = logic
+//		logic.objectWillChange.sink {
+//			// esto lo que hace es suscribirse al objectWillChange de logic y almacenarlo en subscribers, para luego hacer un send de ese objectWillChange y que ya pueda ser escuchado por la vista
+//			self.objectWillChange.send()
+//			// capturo el objectWillChange que viene de EmpleadosLogic, y luego hago send del objectWillChange de EmpleadosVM
+//		}
+//		.store(in: &subscribers)
+//	}
+//	// con esto ya tendríamos la lógica de los datos aparte de la lógica de la vista
+//}
+
+
+
 
 // Si ponemos aquí el @MainActor hacemos que TODA la clase se ejecute en el hilo principal, que es peor idea todavía que pasar toda la función getEmpleados al hilo principal. Repetimos: si la carga de los datos lleva tiempo, pues ese tiempo estará la app y la interfaz congelada; si la carga de datos es muy rápida no hay problema, pero la mejor práctica es pasar al hilo principal solo la asignación de los datos ya descargados a nuestro almacén empleados
 final class EmpleadosVM: ObservableObject {
